@@ -1,3 +1,5 @@
+
+
 CIVITAI_API="6c5170f5756b2c90ea9b689707db7dff"
 
 mkdir -p /workspace/download_logs
@@ -57,4 +59,11 @@ curl -fLJ --retry 5 -OJ -H "Authorization: Bearer $CIVITAI_API" "https://civitai
 wait
 ) > /workspace/download_logs/loras.log 2>&1 &
 
-echo "All download groups launched in parallel."
+
+#  cat /sys/fs/cgroup/memory.max
+# grep -n COMFYUI_ARGS /opt/supervisor-scripts/comfyui.sh
+
+# sed -i '31s|.*|COMFYUI_ARGS="${COMFYUI_ARGS} --disable-pinned-memory --cache-none"|' /opt/supervisor-scripts/comfyui.sh
+# supervisorctl restart comfyui
+
+# echo "All download groups launched in parallel."
