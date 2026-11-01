@@ -65,6 +65,8 @@ curl -fLJ --retry 5 -OJ -H "Authorization: Bearer $CIVITAI_API" "https://civitai
 curl -fLJ --retry 5 -OJ -H "Authorization: Bearer $CIVITAI_API" "https://civitai.red/api/download/models/3416478?fileId=3311427" &
 
 curl -fLJ --retry 5 -OJ -H "Authorization: Bearer $CIVITAI_API"  "https://civitai.red/api/download/models/3228867?fileId=3111185" &
+
+curl -fLJ --retry 5 -OJ -H "Authorization: Bearer $CIVITAI_API" "https://civitai.red/api/download/models/3258590?fileId=3141848" &
 wait
 ) > /workspace/download_logs/loras.log 2>&1 &
 
