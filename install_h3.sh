@@ -42,6 +42,8 @@ curl -fL --retry 5 -C - -O "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/
 set -e
 cd /workspace/ComfyUI/models/loras
 
+curl -fL --retry 5 -C - -O "https://huggingface.co/AlperKTS/Krea2_FP8/resolve/main/krea2_turbo_fp8.safetensors"
+
 curl -fL --retry 5 -C - -O "https://huggingface.co/larryvrh/MiniMax-H3-Turbo-Lora/resolve/main/minimax_h3_turbo_v4_step600_ema.safetensors" &
 
 curl -fLJ --retry 5 -OJ -H "Authorization: Bearer $CIVITAI_API" "https://civitai.red/api/download/models/3374369?fileId=3262606" &
