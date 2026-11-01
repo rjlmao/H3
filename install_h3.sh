@@ -8,12 +8,10 @@ mkdir -p /workspace/ComfyUI/models/{diffusion_models,text_encoders,vae,loras}
 set -e
 cd /workspace/ComfyUI/models/diffusion_models
 
-# Hugging Face
 curl -fL --retry 5 -C - -O "https://huggingface.co/AlperKTS/Krea2_FP8/resolve/main/krea2_turbo_fp8.safetensors"
 
 curl -fL --retry 5 -C - -O "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/diffusion_models/minimax_h3_fl2va_int8_convrot.safetensors"
 
-# Civitai: original server-provided filename
 curl -fLJ --retry 5 -OJ -H "Authorization: Bearer $CIVITAI_API" "https://civitai.red/api/download/models/3429412?fileId=3330999"
 
 ) > /workspace/download_logs/diffusion.log 2>&1 &
@@ -29,7 +27,6 @@ curl -fL --retry 5 -C - -O "https://huggingface.co/Comfy-Org/Qwen3-VL/resolve/ma
 
 cd /workspace/ComfyUI/models/vae
 
-# Civitai VAE: original server-provided filename
 curl -fLJ --retry 5 -OJ -H "Authorization: Bearer $CIVITAI_API" "https://civitai.red/api/download/models/3068442?fileId=2947164"
 
 curl -fL --retry 5 -C - -O "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_fp16.safetensors"
@@ -52,6 +49,10 @@ curl -fLJ --retry 5 -OJ -H "Authorization: Bearer $CIVITAI_API" "https://civitai
 curl -fLJ --retry 5 -OJ -H "Authorization: Bearer $CIVITAI_API" "https://civitai.red/api/download/models/3257589?fileId=3140780" &
 
 curl -fLJ --retry 5 -OJ -H "Authorization: Bearer $CIVITAI_API" "https://civitai.red/api/download/models/3399886?fileId=3290337" &
+
+curl -fLJ --retry 5 -OJ -H "Authorization: Bearer $CIVITAI_API" "https://civitai.red/api/download/models/3413468?fileId=3305979" &
+
+curl -fLJ --retry 5 -OJ -H "Authorization: Bearer $CIVITAI_API" "https://civitai.red/api/download/models/3405038?fileId=3296311" &
 
 wait
 ) > /workspace/download_logs/loras.log 2>&1 &
