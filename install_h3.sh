@@ -1,6 +1,6 @@
 
 
-CIVITAI_API="6c5170f5756b2c90ea9b689707db7dff"
+CIVITAI_API="506b71bb9a2da0a4e8c847811e65fa4b"
 
 mkdir -p /workspace/download_logs
 mkdir -p /workspace/ComfyUI/models/{diffusion_models,text_encoders,vae,loras}
