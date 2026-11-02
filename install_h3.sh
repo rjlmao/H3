@@ -7,7 +7,7 @@ download_civitai() {
     echo
     echo "===== CIVITAI VERSION $VERSION / FILE $FILE_ID ====="
 
-    if ! curl -fsSL --retry 5 \
+    if ! curl -fsSL --retry 5 --retry-delay 3 \
         "https://civitai.com/api/v1/model-versions/$VERSION" \
         -o "$META"; then
         echo "FAILED: Could not retrieve Civitai metadata for $VERSION"
@@ -26,15 +26,17 @@ with open(sys.argv[1]) as f:
 version = sys.argv[2]
 fid = str(sys.argv[3])
 
-f = next((x for x in d.get("files", [])
-          if str(x.get("id")) == fid), None)
+file_info = next(
+    (x for x in d.get("files", []) if str(x.get("id")) == fid),
+    None
+)
 
-if not f:
+if not file_info:
     raise SystemExit("File ID not found in Civitai metadata")
 
 model = d.get("model", {})
 model_name = model.get("name") or "Civitai_Model"
-file_name = os.path.basename(f.get("name") or "")
+file_name = os.path.basename(file_info.get("name") or "")
 
 stem, ext = os.path.splitext(file_name)
 
@@ -49,7 +51,7 @@ if not file_name:
 
 print(model.get("type", ""))
 print(file_name)
-print(round(float(f.get("sizeKB", 0)) * 1024))
+print(round(float(file_info.get("sizeKB", 0)) * 1024))
 PY
     ) || {
         echo "FAILED: Could not identify file $FILE_ID"
@@ -57,6 +59,7 @@ PY
     }
 
     local TYPE NAME EXPECTED DEST TARGET
+
     TYPE=$(echo "$INFO" | sed -n '1p')
     NAME=$(echo "$INFO" | sed -n '2p')
     EXPECTED=$(echo "$INFO" | sed -n '3p')
@@ -72,6 +75,9 @@ PY
     esac
 
     mkdir -p "$DEST"
+
+    # Ensure the manifest exists before accessing it.
+    touch "$MANIFEST"
 
     # Lock the manifest so parallel download groups cannot
     # interfere with one another.
@@ -89,7 +95,10 @@ PY
         # Avoid collisions with another Civitai download.
         if awk -F '\t' -v p="$TARGET" \
             '$3 == p {found=1} END {exit !found}' "$MANIFEST"; then
-            TARGET="$DEST/${NAME%.*}_civitai_${VERSION}_${FILE_ID}.${NAME##*.}"
+
+            local STEM="${NAME%.*}"
+            local EXT="${NAME##*.}"
+            TARGET="$DEST/${STEM}_civitai_${VERSION}_${FILE_ID}.${EXT}"
         fi
 
         printf '%s\t%s\t%s\n' \
@@ -140,3 +149,7 @@ PY
         return 1
     fi
 }
+echo
+echo "===== RESTARTING COMFYUI ====="
+supervisorctl restart comfyui
+supervisorctl status
