@@ -1,5 +1,5 @@
 
-export CIVITAI_API="506b71bb9a2da0a4e8c847811e65fa4b"
+export CIVITAI_API="aec13e057a0838aeb7564ce721b5160f"
 
 BASE="/workspace/ComfyUI/models"
 LOG="/workspace/download_logs"
