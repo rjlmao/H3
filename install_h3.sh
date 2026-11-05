@@ -295,6 +295,7 @@ group_loras() {
     download_civitai 3226989 3109184 || true
     download_civitai 3441237 3339252 || true
     download_civitai 3405852 3297235 || true
+    download_civitai 3202064 3083352 || true
 }
 
 # ------------------------------------------
