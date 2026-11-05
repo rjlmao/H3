@@ -219,7 +219,10 @@ group_diffusion() {
     # H3 Eros Max — confirmed Checkpoint, not LoRA.
     # File 3330999 = h3ErosMax_beta7_3330999.safetensors
 
-    download_civitai 3429412 3346133 || true
+    download_civitai 3429412 3346133 || true // H3 Eros Max int8 
+    
+
+    download_civitai 3429412 3330999 || true // H3 Eros Max bf16
 }
 
 # ------------------------------------------
@@ -228,18 +231,30 @@ group_diffusion() {
 
 group_encoders_vae() {
     # Keep ONLY the 32B text encoder.
-    download_hf \
-    "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_int8_convrot.safetensors" \
-    "$BASE/text_encoders" \
-    "qwen3vl_32b_minimax_h3_int8_convrot.safetensors" || true
+    # download_hf \
+    # "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_int8_convrot.safetensors" \
+    # "$BASE/text_encoders" \
+    # "qwen3vl_32b_minimax_h3_int8_convrot.safetensors" || true
 
+    download_hf \
+    "https://huggingface.co/Comfy-Org/MiniMax-H3/blob/main/text_encoders/qwen3vl_32b_minimax_h3_bf16.safetensors" \
+    "$BASE/text_encoders" \
+    "qwen3vl_32b_minimax_h3_bf16.safetensors" || true
+
+   
     # VAE from Civitai
     download_civitai 3068442 2947164 || true
 
+    # download_hf \
+    # "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors" \
+    # "$BASE/vae" \
+    # "minimax_h3_video_vae_int8_convrot.safetensors" || true
+
     download_hf \
-    "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors" \
+    "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_fp16.safetensors" \
     "$BASE/vae" \
-    "minimax_h3_video_vae_int8_convrot.safetensors" || true
+    "minimax_h3_video_vae_fp16.safetensors" || true
+   
 
     download_hf \
     "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors" \
@@ -257,6 +272,9 @@ group_loras() {
     "$BASE/loras" \
     "minimax_h3_turbo_v4_step600_ema.safetensors" || true
 
+    download_civitai 3219337 3101211 || true // Turbo Light x2v
+
+    
     download_civitai 3374369 3262606 || true
     download_civitai 3306139 3191174 || true
     download_civitai 3257589 3140780 || true
@@ -272,7 +290,11 @@ group_loras() {
     download_civitai 3391862 3281578 || true
 
     download_civitai 3275319 3159342 || true
-    
+    download_civitai 3223411 3105419 || true 
+    download_civitai 3215304 3097094 || true
+    download_civitai 3226989 3109184 || true
+    download_civitai 3441237 3339252 || true
+    download_civitai 3405852 3297235 || true
 }
 
 # ------------------------------------------
