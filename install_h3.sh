@@ -214,14 +214,12 @@ PY
 # ------------------------------------------
 
 group_diffusion() {
-    download_hf \
-    "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/diffusion_models/minimax_h3_fl2va_int8_convrot.safetensors" \
-    "$BASE/diffusion_models" \
-    "minimax_h3_fl2va_int8_convrot.safetensors" || true
+    
 
     # H3 Eros Max — confirmed Checkpoint, not LoRA.
     # File 3330999 = h3ErosMax_beta7_3330999.safetensors
-    download_civitai 3429412 3330999 || true
+
+    download_civitai 3429412 3346133 || true
 }
 
 # ------------------------------------------
@@ -239,9 +237,9 @@ group_encoders_vae() {
     download_civitai 3068442 2947164 || true
 
     download_hf \
-    "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_fp16.safetensors" \
+    "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors" \
     "$BASE/vae" \
-    "minimax_h3_video_vae_fp16.safetensors" || true
+    "minimax_h3_video_vae_int8_convrot.safetensors" || true
 
     download_hf \
     "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors" \
