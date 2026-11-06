@@ -230,7 +230,7 @@ group_diffusion() {
 # ------------------------------------------
 
 group_encoders_vae() {
-    Keep ONLY the 32B text encoder.
+    
     download_hf \
     "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_int8_convrot.safetensors" \
     "$BASE/text_encoders" \
