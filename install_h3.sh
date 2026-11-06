@@ -222,7 +222,7 @@ group_diffusion() {
     download_civitai 3429412 3346133 || true // H3 Eros Max int8 
     
 
-    download_civitai 3429412 3330999 || true // H3 Eros Max bf16
+   # download_civitai 3429412 3330999 || true // H3 Eros Max bf16
 }
 
 # ------------------------------------------
@@ -230,16 +230,16 @@ group_diffusion() {
 # ------------------------------------------
 
 group_encoders_vae() {
-    # Keep ONLY the 32B text encoder.
-    # download_hf \
-    # "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_int8_convrot.safetensors" \
-    # "$BASE/text_encoders" \
-    # "qwen3vl_32b_minimax_h3_int8_convrot.safetensors" || true
-
+    Keep ONLY the 32B text encoder.
     download_hf \
-    "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_bf16.safetensors?download=true" \
+    "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_int8_convrot.safetensors" \
     "$BASE/text_encoders" \
-    "qwen3vl_32b_minimax_h3_bf16.safetensors" || true
+    "qwen3vl_32b_minimax_h3_int8_convrot.safetensors" || true
+
+    # download_hf \
+    # "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_bf16.safetensors?download=true" \
+    # "$BASE/text_encoders" \
+    # "qwen3vl_32b_minimax_h3_bf16.safetensors" || true
 
    
     # VAE from Civitai
